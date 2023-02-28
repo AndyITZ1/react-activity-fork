@@ -60,6 +60,10 @@ export default function PokemonList() {
         newPokemon.name = event.target.value;
       }
 
+      function deleteP(pokeName: string) {
+        setListPoke(listOfPokemons.filter(poke => poke.name !== pokeName));
+      }
+
     return  (
     <div>
         <h3>Add Pokemon via PokeAPI</h3>
@@ -69,15 +73,17 @@ export default function PokemonList() {
             <br/>
             <input type="submit"></input>
         </form>
-
+      
+        
 
         <h2>Pokemon List</h2>
         <div className="grid-pokemon">
             {
                 listOfPokemons.map(poke => {
-                    return <PokemonBox key={poke.name} {...poke} />
+                    return <PokemonBox key={poke.name} {...poke} onDelete={() => deleteP(poke.name)} />
                 })
             }
+            
         </div>
     </div>)
 }
